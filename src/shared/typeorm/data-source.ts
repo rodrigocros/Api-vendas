@@ -8,11 +8,14 @@ export const AppDataSource = new DataSource({
     username: "postgres",
     password: "postgres",
     database: "apivendas",
-    synchronize: true,
-    logging: false,
+    synchronize: false,
+    logging: true,
     migrations: [
         "src/shared/typeorm/migrations/*.ts"
     ],
+    entities: []
 
 })
+
+export default AppDataSource;
 
