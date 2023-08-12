@@ -3,11 +3,18 @@ import express, { NextFunction, Response, Request } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
+import { AppDataSource } from '@shared/typeorm/data-source';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+AppDataSource.initialize().then(async () => {
+    console.log('Database connected!');
+
+});
+
+
 app.use(routes);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
